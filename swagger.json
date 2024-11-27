@@ -1,0 +1,217 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Bajal Capital",
+      "description": "Api testing sample swagger documentation",
+      "version": "1.0.0"
+    },
+    "servers": [
+      {
+        "url": "http://localhost:3000",
+        "description": "Local server"
+      },
+      {
+        "url": "https://dev-api.bajajcapital.com",
+        "description": "Dev server"
+      },
+      {
+        "url": "https://stage-api.bajajcapital.com",
+        "description": "Stage server"
+      },
+      {
+        "url": "https://prod-api.bajajcapital.com",
+        "description": "Prod server"
+      }
+    ],
+    "tags": [
+      {
+        "name": "authorization-token",
+        "description": ""
+      },
+      {
+        "name": "sample-apis",
+        "description":""
+      },
+      {
+        "name": "user-management",
+        "description":""
+      }
+    ],
+    "paths": {
+      "/auth/token": {
+        "get": {
+          "tags": ["authorization-token"],
+          "summary": "Get authentication token",
+          "description": "get token",
+          "operationId": "authorization-token",
+          "responses": {
+            "200": {
+              "description": "Successful operation"
+            }
+          }
+        }
+      },
+      "/sample": {
+        "get": {
+          "tags": ["sample-apis"],
+          "summary": "sample test",
+          "description": "test sample api",
+          "operationId": "sample",
+          "responses": {
+            "200": {
+              "description": "Successful operation"
+            },
+            "500": {
+              "description": "Some error"
+            }
+          }
+        }
+      },
+      "/users/createUser": {
+        "post": {
+            "tags": ["user-managements"],
+            "summary": "Create User",
+            "description": "Create a new user",
+            "operationId": "createUser",
+            "requestBody": {
+              "description": "Create user object",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/createUser"
+                  }
+                }
+              },
+              "required":true
+            },
+            "responses": {
+              "200": {
+                "description": "successfully created"
+              }
+            }
+          }
+      },
+      "/users/getAllUsers": {
+        "get": {
+          "tags": ["user-management"],
+          "summary": "get list of all users",
+          "description": "get all users",
+          "operationId": "getAllUsers",
+          "security": [
+            {
+              "jwt": []
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful operation"
+            },
+            "500": {
+              "description": "Some error"
+            }
+          }
+        }
+      },
+      "/users/getUser/{id}": {
+        "get": {
+          "tags": ["user-management"],
+          "summary": "get user",
+          "description": "get user data with id",
+          "operationId": "getUser",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "description": "Enter field value id",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "minimum": 1
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful operation"
+            },
+            "500": {
+              "description": "Some error"
+            }
+          }
+        }
+      },
+      "/users/updateUser": {
+        "post": {
+            "tags": ["user-managements"],
+            "summary": "Update User",
+            "description": "Update an existing user with id",
+            "operationId": "updateUser",
+            "requestBody": {
+              "description": "User object",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/updateUser"
+                  }
+                }
+              },
+              "required":true
+            },
+            "responses": {
+              "200": {
+                "description": "successfully created"
+              }
+            }
+          }
+      }
+    },
+    "components": {
+      "securitySchemes": {
+        "jwt": {
+          "type": "apiKey",
+          "name": "Authorization",
+          "in": "header"
+        }
+      },
+      "schemas": {
+        "createUser": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "example": "Test Lead"
+            },
+            "email": {
+              "type": "string",
+              "example": "test@gmail.com"
+            },
+            "mobile": {
+              "type": "string",
+              "example": "8851650449"
+            }
+          }
+        },
+        "updateUser": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "example": 1
+            },
+            "name": {
+              "type": "string",
+              "example": "Test Lead"
+            },
+            "email": {
+              "type": "string",
+              "example": "test@gmail.com"
+            },
+            "mobile": {
+              "type": "string",
+              "example": "8851650449"
+            }
+          }
+        }    
+    }
+    }
+  }
