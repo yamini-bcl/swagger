@@ -10,7 +10,7 @@ router.get('/sample', (req, res) => {
 });
 
 // Authentication Token
-router.get('/auth/token', (req, res) => {
+router.get('/bclcomapp/api/auth/token', (req, res) => {
   const token = jwt.sign({ foo: 'bar' }, 'shhhhh', { expiresIn: 60 * 60 });
   res.status(200).json({ message: 'success', token });
 });

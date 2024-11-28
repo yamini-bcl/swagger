@@ -38,7 +38,7 @@
       }
     ],
     "paths": {
-      "/auth/token": {
+      "/bclcomapp/api/auth/token": {
         "get": {
           "tags": ["authorization-token"],
           "summary": "Get authentication token",
@@ -69,7 +69,7 @@
       },
       "/users/createUser": {
         "post": {
-            "tags": ["user-managements"],
+            "tags": ["user-management"],
             "summary": "Create User",
             "description": "Create a new user",
             "operationId": "createUser",
@@ -142,7 +142,7 @@
       },
       "/users/updateUser": {
         "post": {
-            "tags": ["user-managements"],
+            "tags": ["user-management"],
             "summary": "Update User",
             "description": "Update an existing user with id",
             "operationId": "updateUser",
